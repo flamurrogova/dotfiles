@@ -75,7 +75,7 @@
       scroll-preserve-screen-position 1)
 
 ;;
-(set-face-attribute 'default (selected-frame) :height 180)
+(set-face-attribute 'default (selected-frame) :height 150)
 
 ;;
 (use-package doom-themes
@@ -127,15 +127,6 @@
     (smartparens-global-mode 1)
     (show-paren-mode t)))
 
-;; https://github.com/bbatsov/crux - A Collection of Ridiculously Useful eXtensions for Emacs.
-(use-package crux
-  :ensure t
-  :bind
-  ("C-k" . crux-smart-kill-line)
-  ("C-c n" . crux-cleanup-buffer-or-region)
-  ("C-c f" . crux-recentf-find-file)
-  ("C-a" . crux-move-beginning-of-line))
-
 ;;
 (use-package which-key
   :ensure t
@@ -160,6 +151,7 @@
   :config
   (add-hook 'after-init-hook #'global-company-mode))
 
+;;
 (use-package flycheck
   :ensure t
   :diminish flycheck-mode
@@ -239,9 +231,18 @@
 
 ;; disable script security
 (defun my-org-confirm-babel-evaluate (lang body)
-  (not (member lang '("R" "python" "shell"))))
+  (not (member lang '("R" "python" "shell" "emacs_lisp"))))
 
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
+;; https://github.com/bbatsov/crux - A Collection of Ridiculously Useful eXtensions for Emacs.
+(use-package crux
+  :ensure t
+  :bind
+  ("C-k" . crux-smart-kill-line)
+  ("C-c n" . crux-cleanup-buffer-or-region)
+  ("C-c f" . crux-recentf-find-file)
+  ("C-a" . crux-move-beginning-of-line))
 
 
 (provide '.emacs)
